@@ -56,6 +56,7 @@ public class GameMain extends JPanel implements MouseListener{
 		board = new Board();
 		
 		//TODO: call the method to initialise the game board
+		
 	}
 	
 	public static void main(String[] args) {
@@ -70,8 +71,8 @@ public class GameMain extends JPanel implements MouseListener{
 				frame.add(game);
 				
 				
-				//TODO: set the default close operation of the frame to exit_on_close
-		            
+				// set the default close operation of the frame to exit_on_close
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    
 				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
@@ -92,13 +93,15 @@ public class GameMain extends JPanel implements MouseListener{
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
 			
-				//TODO: use the status bar to display the message "X"'s Turn
+				// display the message "X"'s Turn
+				statusBar.setForeground(Color.BLACK); 
+				statusBar.setText("X's Turn");       
 
-				
 			} else {    
 				
-				//TODO: use the status bar to display the message "O"'s Turn
-
+				// display the message "O"'s Turn
+				statusBar.setForeground(Color.BLACK); 
+				statusBar.setText("O's Turn");  
 				
 			}       
 			} else if (currentState == GameState.Draw) {          
