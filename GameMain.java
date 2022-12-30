@@ -55,7 +55,8 @@ public class GameMain extends JPanel implements MouseListener{
 		// Create a new instance of the game "Board"class
 		board = new Board();
 		
-		//TODO: call the method to initialise the game board
+		// initialise the game board
+		initGame();
 	}
 	
 	public static void main(String[] args) {
@@ -70,8 +71,8 @@ public class GameMain extends JPanel implements MouseListener{
 				frame.add(game);
 				
 				
-				//TODO: set the default close operation of the frame to exit_on_close
-		            
+				// set the default close operation of the frame to exit_on_close
+		        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);    
 				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
@@ -92,13 +93,15 @@ public class GameMain extends JPanel implements MouseListener{
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
 			
-				//TODO: use the status bar to display the message "X"'s Turn
+				// display the message "X"'s Turn
+				statusBar.setForeground(Color.BLACK); 
+				statusBar.setText("X's Turn");       
 
-				
 			} else {    
 				
-				//TODO: use the status bar to display the message "O"'s Turn
-
+				// display the message "O"'s Turn
+				statusBar.setForeground(Color.BLACK); 
+				statusBar.setText("O's Turn");  
 				
 			}       
 			} else if (currentState == GameState.Draw) {          
@@ -135,14 +138,18 @@ public class GameMain extends JPanel implements MouseListener{
 		public void updateGame(Player thePlayer, int row, int col) {
 			//check for win after play
 			if(board.hasWon(thePlayer, row, col)) {
-				
-				// TODO: check which player has won and update the currentstate to the appropriate gamestate for the winner
-
+				// check which player has won and update the currentstate to the appropriate gamestate for the winner
+				if (thePlayer == Player.Cross) {
+					currentState = GameState.Cross_won;	
+				} else if ( thePlayer == Player.Nought) {
+					currentState = GameState.Nought_won;
+				}
 				
 			} else 
 				if (board.isDraw ()) {
 					
-				// TODO: set the currentstate to the draw gamestate
+				// set the currentstate to the draw gamestate
+				currentState = GameState.Draw;
 
 			}
 			//otherwise no change to current state of playing
@@ -181,7 +188,7 @@ public class GameMain extends JPanel implements MouseListener{
 		}   
 		
 		//TODO: redraw the graphics on the UI          
-           
+        paintComponent(getGraphics());
 	}
 		
 	
